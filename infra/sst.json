@@ -1,0 +1,8 @@
+{
+  "name": "sst-next-cognito-auth",
+  "region": "us-east-1",
+  "main": "stacks/index.ts",
+  "stage": "dev",
+  "lint": true,
+  "typecheck": true
+}
