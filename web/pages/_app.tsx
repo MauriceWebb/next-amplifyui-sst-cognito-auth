@@ -1,17 +1,27 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import Amplify, { Auth } from 'aws-amplify'
+// import { Auth, Amplify } from 'aws-amplify'
 import '@aws-amplify/ui-react/styles.css'
-import { AmplifyProvider } from '@aws-amplify/ui-react'
-import config from '../aws-exports'
-Amplify.configure(config)
+import {ACtxProvider} from '../components/AuthCtx'
+import { AmplifyProvider, Authenticator } from '@aws-amplify/ui-react'
+// import config from '../aws-exports'
+import { useEffect } from 'react'
+// Amplify.configure({...config, ssr: true})
+import '../helpers/utils/configureAmplify'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <AmplifyProvider>
+    <Authenticator.Provider>
       <Component {...pageProps} />
-    </AmplifyProvider>
+    </Authenticator.Provider>
   )
+  // return (
+  //   <ACtxProvider>
+  //     <AmplifyProvider>
+  //       <Component {...pageProps} />
+  //     </AmplifyProvider>
+  //   </ACtxProvider>
+  // )
 }
 
 export default MyApp

@@ -32,3 +32,19 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+
+## Auth flow for resources:
+
+Client
+1. A resource is requested.
+2. Client-side auth request schema is checked for if auth is required or not for requested resource.
+3. Request is made to server.
+Server
+1. Server recieves request.
+2. Server-side auth request schema is checked for if auth is required for requested resource.
+3. Auth schema for resource is fetched by partitionKey.
+4. Conditions are verified:
+    1. 
+content_3498h34fhu.auth_d3ni39oiedH3xZaqx
