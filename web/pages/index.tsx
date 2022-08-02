@@ -1,22 +1,15 @@
-import type { NextPage } from 'next'
-import { withRouter } from 'next/router';
-import { useEffect } from 'react';
+import type { NextPage } from 'next';
 import useAuth from '../helpers/hooks/useAuth';
-import useDataFetcher from '../helpers/hooks/useDataFetcher'
-import { redirectToAuth } from '../helpers/utils/redirectToAuth';
+import useDataFetcher from '../helpers/hooks/useDataFetcher';
 
 const Home: NextPage = (props: any) => {
-  const {user, signOut, authStatus } = useAuth();
+  const {user, signOut, authStatus, toAuth } = useAuth();
   const title = authStatus === 'authenticated' ?
       `Welcome back home ${user.attributes?.email}!`
       : 'Please sign in:'
 
   const [messageState, fetchMessage]: any[] = useDataFetcher('api/hello')
 
-  function handleSignIn () {
-    redirectToAuth(props.router)
-  }
-  
   return (
     <>
       <h1>{title}</h1>
@@ -24,7 +17,7 @@ const Home: NextPage = (props: any) => {
         <button onClick={signOut}>Sign Out</button>
       }
       { authStatus !== 'authenticated' && 
-        <button onClick={handleSignIn}>Sign In</button>
+        <button onClick={toAuth}>Sign In</button>
       }
       { authStatus === 'authenticated' && (
         <pre>
@@ -45,4 +38,4 @@ const Home: NextPage = (props: any) => {
   )
 }
 
-export default withRouter(Home);
+export default Home;
